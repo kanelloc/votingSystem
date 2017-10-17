@@ -3,7 +3,7 @@ import { ValidateService } from '../../../../services/validation/validate.servic
 import { NotificationsService } from 'angular2-notifications';
 import { Router } from '@angular/router';
 
-import { VoterAuthService } from '../../../../services/auth/voter/voter-auth.service';
+import { UserAuthService } from '../../../../services/auth/users/user-auth.service';
 
 @Component({
   selector: 'app-voter-register',
@@ -19,7 +19,7 @@ export class VoterRegisterComponent implements OnInit {
   constructor(
   	private validateService: ValidateService,
   	private _service: NotificationsService,
-    private voterAuthService: VoterAuthService,
+    private userAuthService: UserAuthService,
     private router: Router) { }
 
   ngOnInit() {
@@ -60,7 +60,7 @@ export class VoterRegisterComponent implements OnInit {
       return false;
     }
 
-    this.voterAuthService.registerVoter(voter).subscribe(data => {
+    this.userAuthService.registerUser(voter, 'voter').subscribe(data => {
       if (!data.success) {
         this.createNotification('error', data.msg);
       } else {

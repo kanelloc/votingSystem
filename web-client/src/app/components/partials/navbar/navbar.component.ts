@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { VoterAuthService } from '../../../services/auth/voter/voter-auth.service';
+import { UserAuthService } from '../../../services/auth/users/user-auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,6 +13,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private voterAuthService: VoterAuthService,
+    private userAuthService: UserAuthService,
     private router: Router,
   ) { }
 
@@ -19,7 +21,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogoutClick(){
-    this.voterAuthService.logoutVoter();
+    this.userAuthService.logoutUser();
     this.router.navigate(['/login']);
     return false;
   }

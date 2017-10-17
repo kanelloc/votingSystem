@@ -1,0 +1,61 @@
+<div class="row">
+<div class="col-xs-12">
+  <div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-users"></i>&nbsp;&nbsp;Candidates Panel</div>
+    <div class="panel-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Votes</th>
+            <th>id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let candidate of candidates" attr.id={{candidate._id}} >
+            <td>{{candidate.username}}</td>
+            <td>{{candidate.email}}</td>
+            <td>{{candidate.totalVotes}}</td>
+            <td>{{candidate._id}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+  	<div class="panel-heading"><i class="fa fa-user">&nbsp;&nbsp;Vote</i></div>
+  	<div class="panel-body">
+  		<form (submit)="voteSubmit()" class="form">
+  			<div class="row">
+  				<div class="col-md-6">
+  					<div class="form-group">
+			      	<label for="sel1">Select Candidate (select one):</label>
+              	<input type="text" [(ngModel)]="selectedValue" name="selectedValue" class="form-control" id="selectedValue">
+			     	</div>
+	  			</div>
+
+	  			<div class="col-md-6">
+            <div class="form-group">
+            		<label>Select tokens</label>
+                <input type="number" [(ngModel)]="selectedVote" name="selectedVote" class="form-control" id="selectedVote">
+            </div>
+          </div>
+
+  			</div>
+
+  			<p  *ngIf="remainingTokens">{{remainingTokens}}</p>
+
+  			<div class="form-group">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-primary btn-auth">
+                    Vote
+                </button>
+            </div>
+         </div>
+		</form>
+  	</div>
+  </div>
+</div>
+</div>

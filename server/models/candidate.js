@@ -13,7 +13,8 @@ const CandidateSchema = mongoose.Schema({
 
 	email: {
 		type: String,
-		required: true
+		unique: true,
+		required: true,
 	},
 
 	password: {
@@ -26,7 +27,7 @@ const CandidateSchema = mongoose.Schema({
 		default: 0
 	}
 
-});
+}, { collection: 'candidates'});
 
 const Candidate	=	module.exports = mongoose.model('Candidate', CandidateSchema);
 

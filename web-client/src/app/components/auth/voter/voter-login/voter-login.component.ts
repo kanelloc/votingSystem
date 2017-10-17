@@ -3,7 +3,7 @@ import { ValidateService } from '../../../../services/validation/validate.servic
 import { NotificationsService } from 'angular2-notifications';
 import { Router } from '@angular/router';
 
-import { VoterAuthService } from '../../../../services/auth/voter/voter-auth.service';
+import { UserAuthService } from '../../../../services/auth/users/user-auth.service';
 
 @Component({
   selector: 'app-voter-login',
@@ -17,7 +17,7 @@ export class VoterLoginComponent implements OnInit {
 
   constructor(private validateService: ValidateService,
     private _service: NotificationsService,
-    private voterAuthService: VoterAuthService,
+    private userAuthService: UserAuthService,
     private router: Router) { }
 
     public options = {
@@ -49,10 +49,11 @@ export class VoterLoginComponent implements OnInit {
       return false;
     }
 
-    this.voterAuthService.authenticateVoter(voter).subscribe(data => {
+    this.userAuthService.authenticateUser(voter, 'voter').subscribe(data => {
       if(data.success){
-        console.log(data);
-        this.voterAuthService.storeVoterData(data.token, data.voter);
+        this.userAuthService.storeUserData(data.token, data.voter, 'user');
+        console.log('Loged in');
+        this.router.navigate(['voter/profile']);
       } else {
         this.createNotification('error', data.msg);
       }

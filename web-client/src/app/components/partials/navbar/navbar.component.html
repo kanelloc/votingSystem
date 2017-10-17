@@ -17,19 +17,19 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-           <li *ngIf="voterAuthService.loggedIn()">
+           <li *ngIf="userAuthService.loggedIn()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="">
-              <a>{{voterAuthService.loadVoter().username}}</a><span class="caret"></span>
+              <a>{{userAuthService.loadUser().username}}</a><span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
-              <li [routerLinkActive]="['active']"><a [routerLink]="['/dashboard']" *ngIf="voterAuthService.loggedIn()">Dashboard</a></li>
-              <li [routerLinkActive]="['active']"><a [routerLink]="['/profile']" *ngIf="voterAuthService.loggedIn()">Profile</a></li>
-              <li><a id="logout" (click)="onLogoutClick()" *ngIf="voterAuthService.loggedIn()">Logout</a></li>
+              <li [routerLinkActive]="['active']"><a [routerLink]="['/dashboard']" *ngIf="userAuthService.loggedIn()">Dashboard</a></li>
+              <li [routerLinkActive]="['active']"><a [routerLink]="['/profile']" *ngIf="userAuthService.loggedIn()">Profile</a></li>
+              <li><a id="logout" (click)="onLogoutClick()" *ngIf="userAuthService.loggedIn()">Logout</a></li>
           </ul>
         </li>  
 
-        <li [routerLinkActive]="['active']"><a [routerLink]="['/login']" *ngIf="!voterAuthService.loggedIn()">Login</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['/register']" *ngIf="!voterAuthService.loggedIn()">Register</a></li> 
+        <li [routerLinkActive]="['active']"><a [routerLink]="['/login']" *ngIf="!userAuthService.loggedIn()">Login</a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['/register']" *ngIf="!userAuthService.loggedIn()">Register</a></li> 
         
         <!-- <li [routerLinkActive]="['active']"><a [routerLink]="['/register']">Register</a></li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['/login']">Login</a></li> -->

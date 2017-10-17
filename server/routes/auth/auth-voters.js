@@ -59,7 +59,7 @@ router.post('/login', (req, res, next) => {
 
                 res.json({
                 success: true, 
-                token:token,
+                token:'JWT '+token,
                 msg:'You are now loged in',
                 voter: {
                     id: voter._id,

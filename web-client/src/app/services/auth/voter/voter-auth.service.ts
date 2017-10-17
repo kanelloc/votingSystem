@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 export class VoterAuthService {
 	authToken: any;
   voter: any;
+  user: any;
   current_voter: any;
 
   constructor(private http: Http) { }
@@ -15,11 +16,16 @@ export class VoterAuthService {
    * Register voter (Service)
    * @param voter 
    */
-  registerVoter(voter){
+  registerVoter(user, type){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/auth/voter/register', voter,{headers: headers})
+    if (type == 'voter'){
+      return this.http.post('http://localhost:3000/auth/voter/register', user,{headers: headers})
       .map(res => res.json());
+    } else if (type == 'candidate') {
+      return this.http.post('http://localhost:3000/auth/candidate/register', user,{headers: headers})
+      .map(res => res.json());
+    }
   }
 
   /**
@@ -67,15 +73,6 @@ export class VoterAuthService {
   loadVoter(){
     var voter = localStorage.getItem('voter');
     return this.current_voter= JSON.parse(voter);
-  }
-
-  /**
-   * Logout user with total wipe (Service)
-   */
-  logoutVoter(){
-    this.authToken = null;
-    this.voter = null;
-    localStorage.clear();
   }
 
 }

@@ -4,6 +4,10 @@ var bodyParser	=	require('body-parser');
 var mongoose	=	require('mongoose');
 var cors        =   require('cors');
 
+var passport    = require('passport');
+
+require('./config/passport')(passport);
+
 //- Load configs
 var config = require('./config/database');
 
@@ -19,6 +23,10 @@ var port 	=	3000;
 //- Body parser Middleware
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // parse application/json
 app.use(bodyParser.json())
