@@ -2,6 +2,7 @@ var express		=	require('express');
 var path		=	require('path');
 var bodyParser	=	require('body-parser');
 var mongoose	=	require('mongoose');
+var cors        =   require('cors');
 
 //- Load configs
 var config = require('./config/database');
@@ -22,6 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// CORS Middleware
+app.use(cors());
 
 //- Set static folder
 app.use(express.static(path.join(__dirname, 'public')));

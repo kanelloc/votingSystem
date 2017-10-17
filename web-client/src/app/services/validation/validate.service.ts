@@ -18,6 +18,18 @@ export class ValidateService {
   }
 
   /**
+   * Validation Register
+   * @param user 
+   */
+  validateLogin(user){
+    if (user.email == undefined || user.password == undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  /**
    * Validation Email
    * @param user 
    */

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../../../services/validation/validate.service';
 import { NotificationsService } from 'angular2-notifications';
+import { Router } from '@angular/router';
 
 import { VoterAuthService } from '../../../../services/auth/voter/voter-auth.service';
 
@@ -18,7 +19,8 @@ export class VoterRegisterComponent implements OnInit {
   constructor(
   	private validateService: ValidateService,
   	private _service: NotificationsService,
-    private voterAuthService: VoterAuthService) { }
+    private voterAuthService: VoterAuthService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -41,23 +43,29 @@ export class VoterRegisterComponent implements OnInit {
     //- Email validation.
     if (!this.validateService.validateEmail(voter.email)) {
     	var msg = 'Invalid email';
-    	this.createNotification('error', msg);
+      this.createNotification('error', msg);
+      return false;
 
     }
     //- Empty fields validation.
     if (!this.validateService.validateRegister(voter)) {
     	var msg = 'Fill the empty fields';
-    	this.createNotification('error', msg);
+      this.createNotification('error', msg);
+      return false;
     }
     //- Confirm password validation.
     if (!this.validateService.validatePassword(voter.password, this.password_confirmation)) {
     	var msg = 'Passwords missmatch';
-    	this.createNotification('error', msg);
+      this.createNotification('error', msg);
+      return false;
     }
 
     this.voterAuthService.registerVoter(voter).subscribe(data => {
-      if (data == 'success') {
-        console.log('gg');
+      if (!data.success) {
+        this.createNotification('error', data.msg);
+      } else {
+        this.router.navigate(['/login']);
+        console.log('Registered');
       }
     });
 

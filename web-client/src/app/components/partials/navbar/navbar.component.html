@@ -17,23 +17,22 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li *ngIf="authService.loggedIn()">
+           <li *ngIf="voterAuthService.loggedIn()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="">
-              <a>{{authService.loadUser().username}}</a><span class="caret"></span>
+              <a>{{voterAuthService.loadVoter().username}}</a><span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
-              <li [routerLinkActive]="['active']"  *ngIf="adminAuthService.adminLoggedIn()"><a [routerLink]="['/admin/panel']">ADMIN</a></li>
-              <li [routerLinkActive]="['active']"><a [routerLink]="['/dashboard']" *ngIf="authService.loggedIn()">Dashboard</a></li>
-              <li [routerLinkActive]="['active']"><a [routerLink]="['/profile']" *ngIf="authService.loggedIn()">Profile</a></li>
-              <li><a id="logout" (click)="onLogoutClick()" *ngIf="authService.loggedIn()">Logout</a></li>
+              <li [routerLinkActive]="['active']"><a [routerLink]="['/dashboard']" *ngIf="voterAuthService.loggedIn()">Dashboard</a></li>
+              <li [routerLinkActive]="['active']"><a [routerLink]="['/profile']" *ngIf="voterAuthService.loggedIn()">Profile</a></li>
+              <li><a id="logout" (click)="onLogoutClick()" *ngIf="voterAuthService.loggedIn()">Logout</a></li>
           </ul>
-        </li>
+        </li>  
 
-        <li [routerLinkActive]="['active']"><a [routerLink]="['/login']" *ngIf="!authService.loggedIn()">Login</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['/register']" *ngIf="!authService.loggedIn()">Register</a></li> -->
+        <li [routerLinkActive]="['active']"><a [routerLink]="['/login']" *ngIf="!voterAuthService.loggedIn()">Login</a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['/register']" *ngIf="!voterAuthService.loggedIn()">Register</a></li> 
         
-        <li [routerLinkActive]="['active']"><a [routerLink]="['/register']">Register</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['/login']">Login</a></li>
+        <!-- <li [routerLinkActive]="['active']"><a [routerLink]="['/register']">Register</a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['/login']">Login</a></li> -->
     </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
